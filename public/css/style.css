@@ -1,0 +1,36 @@
+:root{
+    /* Palet HIS RS Awal Bros */
+    --brand-dark: #004F8C;    
+    --brand-mid:  #009AA5;   
+    --brand-accent:#007BFF;  
+    --muted:#6b6b6b;
+    --danger:#E53935;
+    --warning:#FF9800;
+    --glass: rgba(255,255,255,0.06);
+    --shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.custom-bg {
+    background: linear-gradient(to right, var(--brand-dark), var(--brand-mid));
+}
+
+.card img {
+    width: 200px; 
+    max-width: 100%;
+    height: auto;
+}
+
+.logo {
+    max-width: 300px;
+}
+
+.header {
+    background: linear-gradient(to right, var(--brand-dark), var(--brand-mid));
+    white-space: nowrap;
+    flex-wrap: nowrap !important;
+    border-radius: 0 !important;
+}
+
+.header p {
+    color: white !important;
+}
