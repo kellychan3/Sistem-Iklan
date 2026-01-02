@@ -37,8 +37,7 @@
 
     <script>
         window.routes = {
-            createVideoModal: "{{ route('videos.create-modal') }}",
-            editVideoModal: "{{ route('videos.edit-modal', ':id') }}"
+            videos: "{{ route('videos') }}"
         };
     </script>
 

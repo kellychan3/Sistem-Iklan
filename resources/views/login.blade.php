@@ -14,7 +14,7 @@
         <div class="row justify-content-center w-100">
             <div class="col-md-4">
                 <div class="card p-4">
-                    <img src="img/logo.png" alt="logo" class="d-block mx-auto mb-4">
+                    <img src="{{ asset('img/logo.png') }}" alt="logo" class="d-block mx-auto mb-4">
 
                     @if ($errors->any())
                         <div class="alert alert-danger">

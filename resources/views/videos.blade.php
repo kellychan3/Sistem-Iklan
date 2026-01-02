@@ -8,11 +8,13 @@
 
     <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
 
-        <button class="btn btn-primary custom-button-btn" data-bs-toggle="modal" data-bs-target="#modalTambahVideo">+ Video</button>
+        <button class="btn btn-primary custom-button-btn tambah-video-btn" 
+            data-bs-toggle="modal" data-bs-target="#modalTambahVideo"
+            data-url="{{ route('videos.create-modal') }}">+ Video</button>
 
         <div class="form-check ms-2">
-            <input class="form-check-input" type="checkbox" id="lihatPulang">
-            <label class="form-check-label" for="lihatPulang">
+            <input class="form-check-input" type="checkbox" id="lihatNonaktif">
+            <label class="form-check-label" for="lihatNonaktif">
                 Lihat video non-aktif
             </label>
         </div>
@@ -39,10 +41,14 @@
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="videoTableBody">
             @include('partials.table_video_rows', ['videos' => $videos])
         </tbody>
     </table>
+
+    <div class="d-flex justify-content-center mt-4" id="videoPagination">
+        {{ $videos->links('pagination::bootstrap-5') }}
+    </div>
 </div>
 
 @endsection

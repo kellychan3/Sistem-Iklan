@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdPlayerController;
 use App\Http\Controllers\VideoController;
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,6 @@ use App\Http\Controllers\VideoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -32,3 +29,5 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('/videos/{id}/edit-modal', [VideoController::class, 'editModal'])->name('videos.edit-modal');
     Route::resource('videos', VideoController::class)->only(['store', 'update', 'destroy']);
 });
+
+Route::get('/iklan', [AdPlayerController::class, 'index'])->name('iklan');

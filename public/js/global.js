@@ -6,7 +6,7 @@ export function initLogout() {
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Ya, Logout',
-            cancelButton: 'Batal',
+            cancelButtonText: 'Batal',
             confirmButtonColor: '#d33',
             cancelButtonColor: '#6c757d'
         }).then((result) => {

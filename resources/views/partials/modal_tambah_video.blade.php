@@ -18,20 +18,29 @@
 
             <input type="hidden" name="duration" id="duration">
 
-            <div class="row mb-3 g-3 align-items-end">
-                <div class="col-md-6">
-                    <label class="form-label">Urutan</label>
-                    <input type="number" class="form-control" name="play_order" id="play_order" min="1" required>
-                </div>
+            <div class="mb-3">
+                <label for="is_active" class="form-label">Status</label>
+                <select class="form-select" name="is_active" id="is_active" required>
+                    <option value="">Pilih Status</option>
+                    <option value="1">Aktif</option>
+                    <option value="0">Nonaktif</option>
+                </select>
+            </div>
 
-                <div class="col-md-6">
-                    <label for="is_active" class="form-label">Status</label>
-                    <select class="form-select" name="is_active" id="is_active" required>
-                        <option value="">Pilih Status</option>
-                        <option value="1">Aktif</option>
-                        <option value="0">Nonaktif</option>
+            <div class="mb-3">
+                <label class="form-label">Urutan</label>
+                    <select name="position" class="form-select" id="positionSelect" disabled>
+                        <option value="" selected hidden></option>
+                        <option value="last">Terakhir</option>
+                        <option value="first">Pertama</option>
+                        <option value="after">Setelah video tertentu</option>
                     </select>
-                </div>
+
+                    <select name="after_id" class="form-select mt-2 d-none" id="afterVideo" disabled>
+                        @foreach($videos as $video)
+                            <option value="{{ $video->id }}">{{ $video->play_order }} - {{ $video->title }}</option>
+                        @endforeach
+                    </select>
             </div>
 
             <div class="modal-footer">

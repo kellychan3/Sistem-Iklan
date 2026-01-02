@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title">Edit Video</h5>
+    <h5 class="modal-title">Edit Video {{ $video->title }}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
@@ -12,28 +12,34 @@
                 <label class="form-label">Judul Video</label>
                 <input type="text" class="form-control" name="title" id="title" value="{{ $video->title }}" required>
             </div>
+            
+            <div class="mb-3">
+                <label for="is_active" class="form-label">Status</label>
+                <select class="form-select" name="is_active" id="is_active" required>
+                <option value="">Pilih Status</option>
+                    <option value="1" {{ $video->is_active ? 'selected' : '' }}>Aktif</option>
+                    <option value="0" {{ !$video->is_active ? 'selected' : '' }}>Nonaktif</option>
+                </select>
+            </div>
 
             <div class="mb-3">
-                <label>Preview Video</label>
-                <video width="100%" class="rounded" controls>
-                    <source src="{{ asset('storage/'.$video->file_path) }}" type="video/mp4">
-                </video>
-            </div>
-            
-            <div class="row mb-3 g-3 align-items-end">
-                <div class="col-md-6">
-                    <label class="form-label">Urutan</label>
-                    <input type="number" class="form-control" name="play_order" id="play_order" min="1"  value="{{ $video->play_order }}" required>
-                </div>
+                <label class="form-label">Urutan</label>
+                <select name="position" class="form-select" id="positionSelect" disabled>
+                    <option value="" hidden></option>
+                    <option value="first" {{ $video->play_order == 1 ? 'selected' : '' }}> Pertama</option>
+                    <option value="last" {{ $video->play_order == $video->max('play_order') ? 'selected' : '' }}>Terakhir</option>
+                    <option value="after" {{ $video->play_order > 1 && $video->play_order < $video->max('play_order') ? 'selected' : '' }}>Setelah video tertentu</option>
+                </select>
 
-                <div class="col-md-6">
-                    <label for="is_active" class="form-label">Status</label>
-                    <select class="form-select" name="is_active" id="is_active" required>
-                        <option value="">Pilih Status</option>
-                        <option value="1" {{ $video->is_active ? 'selected' : '' }}>Aktif</option>
-                        <option value="0" {{ !$video->is_active ? 'selected' : '' }}>Nonaktif</option>
-                    </select>
-                </div>
+                <select name="after_id" class="form-select mt-2 d-none" id="afterVideo" disabled>
+                    @foreach($videos as $v)
+                        @if ($v->id !== $video->id)
+                            <option value="{{ $v->id }}">
+                                {{ $v->play_order }} - {{ $v->title }}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
 
             <div class="modal-footer">
